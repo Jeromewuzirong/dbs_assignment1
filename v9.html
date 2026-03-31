@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAMESYS v3.1.7 &mdash; Terminal</title>
+  <link rel="stylesheet" href="styles/v9.css">
+</head>
+<body>
+<div class="screen">
+  <div class="terminal">
+
+    <!-- Window bar -->
+    <div class="top-bar">
+      <div class="dots">
+        <span class="dot r"></span>
+        <span class="dot y"></span>
+        <span class="dot g"></span>
+      </div>
+      <span>gamesys@terminal ~ v3.1.7</span>
+      <span>bash</span>
+    </div>
+
+    <!-- Boot sequence -->
+    <div class="line output dim">[2026-03-31 21:41:07] BIOS POST... OK</div>
+    <div class="line output dim">[2026-03-31 21:41:07] Memory check: 32768 MB ... OK</div>
+    <div class="line output dim">[2026-03-31 21:41:08] Loading kernel modules...</div>
+    <div class="line output dim">[2026-03-31 21:41:08] Mounting /dev/games ... OK</div>
+    <div class="line output dim">[2026-03-31 21:41:09] Starting GAMESYS daemon...</div>
+    <div class="line output highlight">[2026-03-31 21:41:09] GAMESYS v3.1.7 initialized successfully.</div>
+    <div class="blank"></div>
+
+    <!-- ASCII art title -->
+<pre class="ascii-title">
+  ██████   █████  ███    ███ ███████ ███████ ██    ██ ███████
+ ██       ██   ██ ████  ████ ██      ██       ██  ██  ██
+ ██   ███ ███████ ██ ████ ██ █████   ███████   ████   ███████
+ ██    ██ ██   ██ ██  ██  ██ ██           ██    ██         ██
+  ██████  ██   ██ ██      ██ ███████ ███████    ██    ███████
+</pre>
+
+    <!-- System info -->
+    <div class="line"><span class="prompt"><span class="user">root</span>@<span class="path">gamesys</span>:<span class="symbol">~$</span></span> <span class="cmd">neofetch --system</span></div>
+    <div class="blank"></div>
+    <div class="line output">OS:       GAMESYS GNU/Linux x86_64</div>
+    <div class="line output">Host:     PC Gaming Rig mk.IV</div>
+    <div class="line output">Kernel:   6.8.0-gamesys</div>
+    <div class="line output">Uptime:   8,472 hours (and counting)</div>
+    <div class="line output">Packages: 8 (curated)</div>
+    <div class="line output">Shell:    bash 5.2.26</div>
+    <div class="line output">Theme:    Green-on-Black [Terminal]</div>
+    <div class="blank"></div>
+
+    <!-- Load game database -->
+    <div class="line"><span class="prompt"><span class="user">root</span>@<span class="path">gamesys</span>:<span class="symbol">~$</span></span> <span class="cmd">gamesys --load-db /var/games/top_rated.db</span></div>
+    <div class="line output">&gt; Connecting to local database...</div>
+    <div class="line output">&gt; Authenticating... OK</div>
+    <div class="line output">&gt; Reading 8 records from top_rated.db</div>
+    <div class="line progress-line">&gt; Loading: <span class="progress-bar">[########################################]</span> 100%</div>
+    <div class="line output highlight">&gt; 8 game records loaded successfully.</div>
+    <div class="blank"></div>
+
+    <!-- Query games -->
+    <div class="line"><span class="prompt"><span class="user">root</span>@<span class="path">gamesys</span>:<span class="symbol">~$</span></span> <span class="cmd">gamesys --query --sort=score --desc --verbose</span></div>
+    <div class="line output">&gt; Executing query: SELECT * FROM games ORDER BY score DESC</div>
+    <div class="line output">&gt; Rendering output...</div>
+    <div class="blank"></div>
+
+    <div class="separator">========================================================================</div>
+    <div class="line output highlight">&nbsp; QUERY RESULTS &mdash; TOP RATED PC GAMES &mdash; 8 RECORDS FOUND</div>
+    <div class="separator">========================================================================</div>
+    <div class="blank"></div>
+
+    <!-- Game entries -->
+    <div class="game-entry">
+      <div class="entry-header">
+        <span class="game-name">[01] ELDEN RING</span>
+        <span class="game-score-val">SCORE: 9.8/10</span>
+      </div>
+      <div class="game-tags"><span class="game-tag">genre:</span> <span class="game-tag"><span class="val">action_rpg</span></span> &nbsp;<span class="game-tag">dev:</span> <span class="game-tag"><span class="val">fromsoftware</span></span> &nbsp;<span class="game-tag">status:</span> <span class="game-tag"><span class="val">ACTIVE</span></span></div>
+      <p class="game-desc-text">&gt; A vast open world crafted by FromSoftware and George R.R. Martin that redefines exploration. Every ruin, cavern, and boss fight rewards curiosity with brutal, unforgettable encounters.</p>
+      <a class="game-url" href="https://en.bandainamcoent.eu/elden-ring/elden-ring" target="_blank" rel="noopener">&gt; https://en.bandainamcoent.eu/elden-ring/elden-ring</a>
+    </div>
+
+    <div class="game-entry">
+      <div class="entry-header">
+        <span class="game-name">[02] BALDUR'S GATE 3</span>
+        <span class="game-score-val">SCORE: 9.7/10</span>
+      </div>
+      <div class="game-tags"><span class="game-tag">genre:</span> <span class="game-tag"><span class="val">rpg</span></span> &nbsp;<span class="game-tag">dev:</span> <span class="game-tag"><span class="val">larian_studios</span></span> &nbsp;<span class="game-tag">status:</span> <span class="game-tag"><span class="val">ACTIVE</span></span></div>
+      <p class="game-desc-text">&gt; Larian Studios delivered the definitive CRPG with unmatched player freedom and reactive storytelling. Every choice branches into consequences that reshape the entire narrative.</p>
+      <a class="game-url" href="https://baldursgate3.game" target="_blank" rel="noopener">&gt; https://baldursgate3.game</a>
+    </div>
+
+    <div class="game-entry">
+      <div class="entry-header">
+        <span class="game-name">[03] HADES</span>
+        <span class="game-score-val">SCORE: 9.6/10</span>
+      </div>
+      <div class="game-tags"><span class="game-tag">genre:</span> <span class="game-tag"><span class="val">roguelike</span></span> &nbsp;<span class="game-tag">dev:</span> <span class="game-tag"><span class="val">supergiant_games</span></span> &nbsp;<span class="game-tag">status:</span> <span class="game-tag"><span class="val">ACTIVE</span></span></div>
+      <p class="game-desc-text">&gt; Supergiant fused razor-sharp combat with a story that deepens with every death. The dialogue never repeats and the gameplay loop is near-perfect in its pacing.</p>
+      <a class="game-url" href="https://www.supergiantgames.com/games/hades" target="_blank" rel="noopener">&gt; https://www.supergiantgames.com/games/hades</a>
+    </div>
+
+    <div class="game-entry">
+      <div class="entry-header">
+        <span class="game-name">[04] HOLLOW KNIGHT</span>
+        <span class="game-score-val">SCORE: 9.5/10</span>
+      </div>
+      <div class="game-tags"><span class="game-tag">genre:</span> <span class="game-tag"><span class="val">indie</span></span> &nbsp;<span class="game-tag">dev:</span> <span class="game-tag"><span class="val">team_cherry</span></span> &nbsp;<span class="game-tag">status:</span> <span class="game-tag"><span class="val">ACTIVE</span></span></div>
+      <p class="game-desc-text">&gt; A haunting, hand-drawn metroidvania with impossibly deep world design. Team Cherry packed hundreds of hours of content into a game that costs less than a meal.</p>
+      <a class="game-url" href="https://www.hollowknight.com" target="_blank" rel="noopener">&gt; https://www.hollowknight.com</a>
+    </div>
+
+    <div class="game-entry">
+      <div class="entry-header">
+        <span class="game-name">[05] THE WITCHER 3</span>
+        <span class="game-score-val">SCORE: 9.4/10</span>
+      </div>
+      <div class="game-tags"><span class="game-tag">genre:</span> <span class="game-tag"><span class="val">rpg</span></span> &nbsp;<span class="game-tag">dev:</span> <span class="game-tag"><span class="val">cd_projekt_red</span></span> &nbsp;<span class="game-tag">status:</span> <span class="game-tag"><span class="val">ACTIVE</span></span></div>
+      <p class="game-desc-text">&gt; CD Projekt Red set the gold standard for open-world storytelling. Side quests here rival the main campaigns of other games in depth and emotional weight.</p>
+      <a class="game-url" href="https://www.thewitcher.com/en/witcher3" target="_blank" rel="noopener">&gt; https://www.thewitcher.com/en/witcher3</a>
+    </div>
+
+    <div class="game-entry">
+      <div class="entry-header">
+        <span class="game-name">[06] STARDEW VALLEY</span>
+        <span class="game-score-val">SCORE: 9.3/10</span>
+      </div>
+      <div class="game-tags"><span class="game-tag">genre:</span> <span class="game-tag"><span class="val">simulation</span></span> &nbsp;<span class="game-tag">dev:</span> <span class="game-tag"><span class="val">concernedape</span></span> &nbsp;<span class="game-tag">status:</span> <span class="game-tag"><span class="val">ACTIVE</span></span></div>
+      <p class="game-desc-text">&gt; One developer built the coziest farming sim ever made, and it keeps getting better for free. An endlessly charming loop of planting, mining, fishing, and befriending an entire town.</p>
+      <a class="game-url" href="https://www.stardewvalley.net" target="_blank" rel="noopener">&gt; https://www.stardewvalley.net</a>
+    </div>
+
+    <div class="game-entry">
+      <div class="entry-header">
+        <span class="game-name">[07] CIVILIZATION VI</span>
+        <span class="game-score-val">SCORE: 9.0/10</span>
+      </div>
+      <div class="game-tags"><span class="game-tag">genre:</span> <span class="game-tag"><span class="val">strategy</span></span> &nbsp;<span class="game-tag">dev:</span> <span class="game-tag"><span class="val">firaxis_games</span></span> &nbsp;<span class="game-tag">status:</span> <span class="game-tag"><span class="val">ACTIVE</span></span></div>
+      <p class="game-desc-text">&gt; The "one more turn" king that devours entire weekends without warning. Build empires across millennia with a depth of strategy that no other 4X game has matched.</p>
+      <a class="game-url" href="https://civilization.2k.com" target="_blank" rel="noopener">&gt; https://civilization.2k.com</a>
+    </div>
+
+    <div class="game-entry">
+      <div class="entry-header">
+        <span class="game-name">[08] COUNTER-STRIKE 2</span>
+        <span class="game-score-val">SCORE: 8.9/10</span>
+      </div>
+      <div class="game-tags"><span class="game-tag">genre:</span> <span class="game-tag"><span class="val">fps</span></span> &nbsp;<span class="game-tag">dev:</span> <span class="game-tag"><span class="val">valve</span></span> &nbsp;<span class="game-tag">status:</span> <span class="game-tag"><span class="val">ACTIVE</span></span></div>
+      <p class="game-desc-text">&gt; The competitive FPS that defined a genre, rebuilt on Source 2 with responsive tick rendering. Two decades in and it still has the tightest gunplay on PC.</p>
+      <a class="game-url" href="https://www.counter-strike.net" target="_blank" rel="noopener">&gt; https://www.counter-strike.net</a>
+    </div>
+
+    <div class="blank"></div>
+    <div class="separator">========================================================================</div>
+    <div class="line output">&gt; Query complete. 8 records returned in 0.042s</div>
+    <div class="separator">========================================================================</div>
+    <div class="blank"></div>
+
+    <!-- Summary table -->
+    <div class="line"><span class="prompt"><span class="user">root</span>@<span class="path">gamesys</span>:<span class="symbol">~$</span></span> <span class="cmd">gamesys --summary --format=table</span></div>
+    <div class="blank"></div>
+
+    <div class="table-header">
+      <span>RANK</span>
+      <span>TITLE</span>
+      <span>SCORE</span>
+      <span>GENRE</span>
+    </div>
+
+    <div class="summary-row"><span class="s-rank">01</span><span class="s-name">Elden Ring</span><span class="s-score">9.8</span><span class="s-genre">action_rpg</span></div>
+    <div class="summary-row"><span class="s-rank">02</span><span class="s-name">Baldur's Gate 3</span><span class="s-score">9.7</span><span class="s-genre">rpg</span></div>
+    <div class="summary-row"><span class="s-rank">03</span><span class="s-name">Hades</span><span class="s-score">9.6</span><span class="s-genre">roguelike</span></div>
+    <div class="summary-row"><span class="s-rank">04</span><span class="s-name">Hollow Knight</span><span class="s-score">9.5</span><span class="s-genre">indie</span></div>
+    <div class="summary-row"><span class="s-rank">05</span><span class="s-name">The Witcher 3</span><span class="s-score">9.4</span><span class="s-genre">rpg</span></div>
+    <div class="summary-row"><span class="s-rank">06</span><span class="s-name">Stardew Valley</span><span class="s-score">9.3</span><span class="s-genre">simulation</span></div>
+    <div class="summary-row"><span class="s-rank">07</span><span class="s-name">Civilization VI</span><span class="s-score">9.0</span><span class="s-genre">strategy</span></div>
+    <div class="summary-row"><span class="s-rank">08</span><span class="s-name">Counter-Strike 2</span><span class="s-score">8.9</span><span class="s-genre">fps</span></div>
+
+    <div class="blank"></div>
+    <div class="line output dim">&gt; AVG_SCORE: 9.40 | MIN: 8.9 | MAX: 9.8 | RECORDS: 8</div>
+    <div class="blank"></div>
+
+    <!-- Exit -->
+    <div class="line"><span class="prompt"><span class="user">root</span>@<span class="path">gamesys</span>:<span class="symbol">~$</span></span> <span class="cmd">echo "curated by players, for players"</span></div>
+    <div class="line output highlight">curated by players, for players</div>
+    <div class="blank"></div>
+
+    <div class="line"><span class="prompt"><span class="user">root</span>@<span class="path">gamesys</span>:<span class="symbol">~$</span></span> <span class="cursor"></span></div>
+
+    <!-- Footer -->
+    <div class="footer-block">
+      <div class="line">GAMESYS v3.1.7 &mdash; PID 1337 &mdash; TTY pts/0 &mdash; 2026-03-31</div>
+      <div class="line">Session uptime: 8472h 23m 17s &mdash; No errors reported</div>
+      <div class="line">EOF</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

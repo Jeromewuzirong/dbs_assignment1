@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+  color: #111111;
+  font-family: "Georgia", "Times New Roman", serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12vh 2rem 6rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 10vh;
+}
+
+header h1 {
+  font-size: 4.5rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+header p {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #888888;
+  letter-spacing: 0.08em;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: #cccccc;
+  margin: 0 auto 10vh;
+}
+
+ol {
+  list-style: none;
+  width: 100%;
+  max-width: 560px;
+  counter-reset: games;
+}
+
+ol li {
+  counter-increment: games;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 2rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+ol li:last-child {
+  border-bottom: none;
+}
+
+.game-info {
+  display: flex;
+  align-items: baseline;
+  gap: 1.8rem;
+}
+
+.game-info::before {
+  content: counter(games, decimal-leading-zero);
+  font-size: 0.8rem;
+  color: #cccccc;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+.game-title {
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.game-genre {
+  font-size: 0.8rem;
+  color: #aaaaaa;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.game-score {
+  font-size: 0.85rem;
+  color: #999999;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+footer {
+  margin-top: 12vh;
+  font-size: 0.75rem;
+  color: #cccccc;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}

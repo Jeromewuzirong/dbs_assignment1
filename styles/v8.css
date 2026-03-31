@@ -1,0 +1,408 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&family=Special+Elite&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --paper: #f5f0e8;
+  --ink: #1a1a1a;
+  --ink-light: #444444;
+  --marker-yellow: rgba(255, 230, 0, 0.45);
+  --marker-pink: rgba(255, 105, 135, 0.3);
+  --marker-blue: rgba(80, 160, 255, 0.25);
+  --pencil: #888888;
+  --tape: rgba(255, 245, 200, 0.7);
+  --hand: 'Caveat', cursive;
+  --typewriter: 'Special Elite', monospace;
+  --note: 'Patrick Hand', cursive;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--note);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Photocopy grain texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  opacity: 0.8;
+}
+
+/* Faint ruled lines on the paper */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 31px,
+    rgba(180, 170, 155, 0.15) 31px,
+    rgba(180, 170, 155, 0.15) 32px
+  );
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem 4rem;
+}
+
+/* ===== Sketchy border util ===== */
+.sketch-border {
+  border: 2.5px solid var(--ink);
+  border-radius: 2px 8px 4px 12px;
+  box-shadow:
+    2px 2px 0 var(--ink),
+    inset 0 0 0 1px transparent;
+}
+
+/* ===== Header ===== */
+header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+header::before {
+  content: '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~';
+  display: block;
+  font-family: var(--hand);
+  font-size: 1.2rem;
+  color: var(--pencil);
+  letter-spacing: 0.3em;
+  margin-bottom: 1.5rem;
+}
+
+header h1 {
+  font-family: var(--hand);
+  font-weight: 700;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  line-height: 0.95;
+  transform: rotate(-2deg);
+  position: relative;
+  display: inline-block;
+}
+
+header h1 .highlight {
+  background: var(--marker-yellow);
+  padding: 0 0.3em;
+  border-radius: 2px;
+}
+
+/* Underline scribble */
+header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: -5%;
+  width: 110%;
+  height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='12' viewBox='0 0 200 12'%3E%3Cpath d='M0 8 Q25 2, 50 7 T100 6 T150 8 T200 5' fill='none' stroke='%231a1a1a' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+  background-size: 200px 12px;
+}
+
+.tagline {
+  font-family: var(--typewriter);
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  margin-top: 1.5rem;
+  transform: rotate(0.5deg);
+  letter-spacing: 0.04em;
+}
+
+/* Tape decoration */
+.tape {
+  position: absolute;
+  width: 80px;
+  height: 26px;
+  background: var(--tape);
+  border: 1px solid rgba(200, 190, 160, 0.6);
+  opacity: 0.85;
+}
+
+.tape-tl { top: -8px; left: 10%; transform: rotate(-15deg); }
+.tape-tr { top: -8px; right: 10%; transform: rotate(12deg); }
+
+/* ===== Doodle margin notes ===== */
+.margin-note {
+  position: absolute;
+  font-family: var(--hand);
+  font-size: 0.85rem;
+  color: var(--pencil);
+  transform: rotate(-5deg);
+  pointer-events: none;
+}
+
+/* ===== Stars doodle ===== */
+.stars-doodle {
+  text-align: center;
+  font-family: var(--hand);
+  font-size: 1.5rem;
+  color: var(--pencil);
+  letter-spacing: 0.5em;
+  margin: 1rem 0 2rem;
+}
+
+/* ===== Games grid — chaotic zine ===== */
+.games {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* ===== Game card ===== */
+.game-card {
+  background: var(--paper);
+  padding: 1.5rem;
+  position: relative;
+  transition: transform 0.15s;
+}
+
+.game-card:hover {
+  transform: scale(1.02);
+  z-index: 5;
+}
+
+/* Alternating rotations */
+.game-card:nth-child(1) { transform: rotate(-1.2deg); }
+.game-card:nth-child(2) { transform: rotate(0.8deg); }
+.game-card:nth-child(3) { transform: rotate(0.5deg); }
+.game-card:nth-child(4) { transform: rotate(-0.7deg); }
+.game-card:nth-child(5) { transform: rotate(1deg); }
+.game-card:nth-child(6) { transform: rotate(-1.5deg); }
+.game-card:nth-child(7) { transform: rotate(0.3deg); }
+.game-card:nth-child(8) { transform: rotate(-0.9deg); }
+
+.game-card:nth-child(1):hover,
+.game-card:nth-child(2):hover,
+.game-card:nth-child(3):hover,
+.game-card:nth-child(4):hover,
+.game-card:nth-child(5):hover,
+.game-card:nth-child(6):hover,
+.game-card:nth-child(7):hover,
+.game-card:nth-child(8):hover {
+  transform: scale(1.02) rotate(0deg);
+}
+
+/* Rank circle */
+.card-rank {
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--hand);
+  font-weight: 700;
+  font-size: 1.1rem;
+  background: var(--paper);
+  z-index: 2;
+}
+
+.card-title {
+  font-family: var(--hand);
+  font-weight: 700;
+  font-size: 1.7rem;
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+  padding-right: 2.5rem;
+}
+
+.card-meta {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.card-genre {
+  font-family: var(--typewriter);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-light);
+}
+
+.card-score {
+  font-family: var(--hand);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* Alternating marker highlights on scores */
+.game-card:nth-child(odd) .card-score {
+  background: var(--marker-yellow);
+  padding: 0 0.3em;
+}
+
+.game-card:nth-child(even) .card-score {
+  background: var(--marker-pink);
+  padding: 0 0.3em;
+}
+
+.card-desc {
+  font-family: var(--note);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--ink-light);
+  margin-bottom: 1rem;
+}
+
+.card-link {
+  font-family: var(--typewriter);
+  font-size: 0.72rem;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 2px dashed var(--ink);
+  padding-bottom: 1px;
+  transition: background 0.15s;
+}
+
+.card-link:hover {
+  background: var(--marker-blue);
+}
+
+/* ===== Sticky note — feature callout ===== */
+.sticky {
+  background: #fff9b1;
+  padding: 1.5rem;
+  font-family: var(--hand);
+  position: relative;
+  box-shadow: 3px 4px 8px rgba(0,0,0,0.12);
+  transform: rotate(2deg);
+  margin: 2rem auto;
+  max-width: 340px;
+  text-align: center;
+  z-index: 2;
+}
+
+.sticky::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 20px;
+  background: var(--tape);
+  border: 1px solid rgba(200, 190, 160, 0.5);
+}
+
+.sticky .sticky-title {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.sticky .sticky-body {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* ===== Divider doodles ===== */
+.doodle-divider {
+  text-align: center;
+  font-family: var(--hand);
+  font-size: 1.2rem;
+  color: var(--pencil);
+  margin: 2.5rem 0 2rem;
+  letter-spacing: 0.2em;
+}
+
+/* ===== Arrow annotations ===== */
+.arrow-note {
+  font-family: var(--hand);
+  font-size: 0.95rem;
+  color: var(--pencil);
+  text-align: center;
+  transform: rotate(-1deg);
+  margin: 0.5rem 0 2rem;
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+  border-top: 2.5px dashed var(--pencil);
+  position: relative;
+}
+
+footer::before {
+  content: '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~';
+  display: block;
+  font-family: var(--hand);
+  font-size: 1rem;
+  color: var(--pencil);
+  letter-spacing: 0.3em;
+  margin-bottom: 1rem;
+}
+
+footer p {
+  font-family: var(--typewriter);
+  font-size: 0.75rem;
+  color: var(--ink-light);
+  letter-spacing: 0.05em;
+}
+
+footer .footer-hand {
+  font-family: var(--hand);
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+/* ===== Corner doodles ===== */
+.corner-doodle {
+  position: fixed;
+  font-family: var(--hand);
+  font-size: 2rem;
+  color: var(--pencil);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.corner-doodle.tl { top: 1rem; left: 1rem; }
+.corner-doodle.br { bottom: 1rem; right: 1rem; transform: rotate(180deg); }
+
+/* ===== Responsive ===== */
+@media (max-width: 650px) {
+  .games {
+    grid-template-columns: 1fr;
+  }
+
+  .page {
+    padding: 1.5rem;
+  }
+
+  header h1 {
+    font-size: 2.8rem;
+  }
+
+  .sticky {
+    max-width: 90%;
+  }
+}

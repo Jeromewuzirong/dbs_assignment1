@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --neon-green: #39ff14;
+  --neon-purple: #bf00ff;
+  --bg: #0a0a0a;
+  --card-bg: #111111;
+  --text: #e0e0e0;
+  --text-dim: #666666;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scanline overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Grid background */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 5rem;
+  padding-top: 3rem;
+}
+
+header h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 4rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--neon-green);
+  text-shadow:
+    0 0 10px var(--neon-green),
+    0 0 40px rgba(57, 255, 20, 0.4),
+    0 0 80px rgba(57, 255, 20, 0.15);
+  margin-bottom: 1rem;
+}
+
+header .tagline {
+  font-size: 0.95rem;
+  color: var(--neon-purple);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(191, 0, 255, 0.5);
+}
+
+header .accent-line {
+  display: block;
+  width: 120px;
+  height: 2px;
+  margin: 2rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--neon-purple), var(--neon-green), transparent);
+  box-shadow: 0 0 12px rgba(191, 0, 255, 0.4);
+}
+
+/* Game cards */
+.games {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.game-card {
+  background: var(--card-bg);
+  border: 1px solid #1a1a1a;
+  border-left: 3px solid var(--neon-purple);
+  padding: 2rem 2.5rem;
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.game-card:hover {
+  border-left-color: var(--neon-green);
+  box-shadow:
+    0 0 20px rgba(57, 255, 20, 0.07),
+    inset 0 0 30px rgba(57, 255, 20, 0.02);
+}
+
+.game-card::before {
+  content: attr(data-rank);
+  position: absolute;
+  top: -1px;
+  right: 2rem;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 4rem;
+  color: rgba(57, 255, 20, 0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.game-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+}
+
+.game-score {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  color: var(--neon-green);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+}
+
+.game-genre {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--neon-purple);
+  border: 1px solid rgba(191, 0, 255, 0.3);
+  padding: 0.2rem 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.game-desc {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin-bottom: 1.2rem;
+}
+
+.game-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--neon-green);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+  padding-bottom: 2px;
+  transition: text-shadow 0.3s, border-color 0.3s;
+}
+
+.game-link:hover {
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+  border-color: var(--neon-green);
+}
+
+.game-link::after {
+  content: ' \2192';
+}
+
+/* Footer */
+footer {
+  margin-top: 6rem;
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+footer .footer-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-purple), transparent);
+  margin: 0 auto 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2.2rem;
+  }
+
+  .game-card {
+    padding: 1.5rem;
+  }
+
+  .card-top {
+    flex-direction: column;
+  }
+}
