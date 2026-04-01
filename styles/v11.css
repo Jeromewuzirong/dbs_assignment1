@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --neon-green: #39ff14;
+  --neon-purple: #bf00ff;
+  --bg: #0a0a0a;
+  --card-bg: #0e0e18;
+  --card-border: #1a1a2e;
+  --text: #c8c8d0;
+  --text-dim: #555566;
+  --pixel: 'Press Start 2P', monospace;
+  --mono: 'Share Tech Mono', monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* Scanlines */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Grid bg */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(191, 0, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== Marquee ===== */
+.marquee {
+  background: linear-gradient(90deg, var(--neon-purple), #6600aa, var(--neon-purple));
+  padding: 0.5rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 3px solid var(--neon-green);
+}
+
+.marquee-inner {
+  display: inline-block;
+  animation: scroll-left 22s linear infinite;
+}
+
+.marquee-inner span {
+  font-family: var(--pixel);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bg);
+  padding: 0 2.5rem;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== Header ===== */
+header {
+  text-align: center;
+  padding: 4rem 2rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+header h1 {
+  font-family: var(--pixel);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  color: var(--neon-green);
+  text-shadow:
+    0 0 10px var(--neon-green),
+    0 0 40px rgba(57, 255, 20, 0.35),
+    3px 3px 0 var(--neon-purple),
+    6px 6px 0 rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.5rem;
+}
+
+header .tagline {
+  font-family: var(--pixel);
+  font-size: 0.5rem;
+  color: var(--neon-purple);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px rgba(191, 0, 255, 0.4);
+}
+
+.accent-line {
+  display: block;
+  width: 160px;
+  height: 3px;
+  margin: 2rem auto 0;
+  background: linear-gradient(90deg, var(--neon-green), var(--neon-purple), var(--neon-green));
+  box-shadow:
+    0 0 8px rgba(57, 255, 20, 0.3),
+    0 0 8px rgba(191, 0, 255, 0.3);
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(57, 255, 20, 0.3), 0 0 8px rgba(191, 0, 255, 0.3); }
+  50% { opacity: 0.7; box-shadow: 0 0 20px rgba(57, 255, 20, 0.5), 0 0 20px rgba(191, 0, 255, 0.5); }
+}
+
+/* ===== Stats bar ===== */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 1rem 2rem;
+  background: var(--card-bg);
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  font-family: var(--pixel);
+  font-size: 0.45rem;
+  letter-spacing: 0.1em;
+  z-index: 1;
+  position: relative;
+}
+
+.stats-bar .label {
+  color: var(--neon-purple);
+}
+
+.stats-bar .value {
+  color: var(--neon-green);
+}
+
+/* ===== Container ===== */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+}
+
+.section-title {
+  font-family: var(--pixel);
+  font-size: 0.65rem;
+  color: var(--neon-purple);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(191, 0, 255, 0.3);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+/* ===== Game cards ===== */
+.games {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.game-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-left: 4px solid var(--neon-purple);
+  padding: 2rem 2rem 1.8rem;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.game-card:hover {
+  border-left-color: var(--neon-green);
+  box-shadow:
+    0 0 25px rgba(57, 255, 20, 0.06),
+    inset 0 0 40px rgba(57, 255, 20, 0.015);
+}
+
+/* Ghost rank */
+.game-card::before {
+  content: attr(data-rank);
+  position: absolute;
+  top: 0;
+  right: 1.5rem;
+  font-family: var(--pixel);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: rgba(57, 255, 20, 0.04);
+  pointer-events: none;
+}
+
+.game-card:hover::before {
+  color: rgba(57, 255, 20, 0.08);
+}
+
+/* Rank badge */
+.rank-badge {
+  position: absolute;
+  top: -1px;
+  right: 1.5rem;
+  font-family: var(--pixel);
+  font-size: 0.5rem;
+  color: var(--bg);
+  background: var(--neon-green);
+  padding: 0.35rem 0.6rem;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+}
+
+.card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+  padding-right: 4rem;
+}
+
+.game-title {
+  font-family: var(--pixel);
+  font-size: 0.8rem;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  transition: color 0.2s;
+}
+
+.game-card:hover .game-title {
+  color: var(--neon-green);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
+}
+
+.game-score {
+  font-family: var(--pixel);
+  font-size: 0.55rem;
+  color: var(--neon-green);
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.35);
+  white-space: nowrap;
+}
+
+.game-genre {
+  display: inline-block;
+  font-family: var(--pixel);
+  font-size: 0.4rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--neon-purple);
+  border: 1px solid rgba(191, 0, 255, 0.35);
+  padding: 0.3rem 0.7rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 6px rgba(191, 0, 255, 0.3);
+}
+
+.game-desc {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: var(--text-dim);
+  margin-bottom: 1.2rem;
+}
+
+.game-link {
+  font-family: var(--pixel);
+  font-size: 0.4rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--neon-green);
+  text-decoration: none;
+  border: 1px solid rgba(57, 255, 20, 0.25);
+  padding: 0.4rem 0.9rem;
+  display: inline-block;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+.game-link:hover {
+  background: var(--neon-green);
+  color: var(--bg);
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+}
+
+/* ===== Footer ===== */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.footer-line {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-purple), transparent);
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 0 8px rgba(191, 0, 255, 0.3);
+}
+
+footer .footer-text {
+  font-family: var(--pixel);
+  font-size: 0.45rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+footer .footer-sub {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-top: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .stats-bar {
+    gap: 1.5rem;
+    font-size: 0.38rem;
+  }
+
+  .game-card {
+    padding: 1.5rem;
+  }
+
+  .card-top {
+    flex-direction: column;
+    padding-right: 3rem;
+  }
+
+  .rank-badge {
+    font-size: 0.4rem;
+  }
+}

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC Game Recommendation Guide &mdash; Design Gallery</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0c0c14;
+      --surface: #12121e;
+      --card: #16162a;
+      --card-hover: #1c1c36;
+      --border: #222240;
+      --accent: #6c5ce7;
+      --accent-light: #a29bfe;
+      --green: #00cec9;
+      --pink: #fd79a8;
+      --text: #dfe6e9;
+      --text-dim: #636e80;
+      --white: #f5f5fa;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(108, 92, 231, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(253, 121, 168, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      border: 1px solid rgba(162, 155, 254, 0.3);
+      padding: 0.4rem 1.2rem;
+      border-radius: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent-light), var(--pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-dim);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Phase sections */
+    .phase {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      padding: 3rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    .phase-number {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      background: rgba(108, 92, 231, 0.1);
+      padding: 0.35rem 0.8rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .phase-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .phase-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-left: auto;
+    }
+
+    /* Card grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem;
+      padding-bottom: 2rem;
+    }
+
+    /* Version card */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.8rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .card-version {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(0, 206, 201, 0.1);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .card-tag {
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 0.2rem 0.5rem;
+      border: 1px solid rgba(99, 110, 128, 0.3);
+      border-radius: 3px;
+    }
+
+    .card-tag.new { color: var(--pink); border-color: rgba(253, 121, 168, 0.3); }
+    .card-tag.mashup { color: var(--accent-light); border-color: rgba(162, 155, 254, 0.3); }
+    .card-tag.final { color: var(--green); border-color: rgba(0, 206, 201, 0.3); }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .card-arrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .card:hover .card-arrow {
+      color: var(--white);
+    }
+
+    .card-arrow::after {
+      content: ' \2192';
+    }
+
+    /* Milestone card */
+    .card.milestone {
+      border-color: rgba(108, 92, 231, 0.3);
+      background: linear-gradient(135deg, var(--card) 0%, rgba(108, 92, 231, 0.05) 100%);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    footer .brand {
+      font-weight: 700;
+      color: var(--accent-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+      .phase-header { flex-direction: column; gap: 0.5rem; }
+      .phase-desc { margin-left: 0; }
+      .hero { padding: 4rem 1.5rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-label">DBS Assignment 1 &mdash; Design Gallery</div>
+    <h1>25 Versions of a <span>PC Game Guide</span></h1>
+    <p class="hero-sub">A landing page for PC game recommendations, evolved through 25 design iterations &mdash; from raw exploration to polished convergence.</p>
+  </div>
+
+  <!-- Phase 1: Exploration -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-number">Phase 1</span>
+      <span class="phase-title">Exploration</span>
+      <span class="phase-desc">Wildly different aesthetics, testing boundaries</span>
+    </div>
+
+    <div class="grid">
+      <a class="card" href="v1.html">
+        <div class="card-head">
+          <span class="card-version">V1</span>
+          <span class="card-tag new">Origin</span>
+        </div>
+        <div class="card-title">Ultra-Minimal Serif</div>
+        <div class="card-desc">Pure white background, elegant Georgia typography, maximum whitespace. Top 5 games in a clean numbered list. The quietest possible starting point.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v2.html">
+        <div class="card-head">
+          <span class="card-version">V2</span>
+          <span class="card-tag new">New Style</span>
+        </div>
+        <div class="card-title">Dark Cyberpunk</div>
+        <div class="card-desc">Neon green and purple on black. Scanline overlay, grid background, Orbitron font. Cards with purple left-border that flips green on hover. The cyberpunk DNA begins.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v3.html">
+        <div class="card-head">
+          <span class="card-version">V3</span>
+          <span class="card-tag new">New Style</span>
+        </div>
+        <div class="card-title">Retro Arcade</div>
+        <div class="card-desc">Press Start 2P pixel font, bold red/yellow/blue blocks, blinking title, scrolling marquee, arcade button-press hover effect. All 8 games debut here.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v4.html">
+        <div class="card-head">
+          <span class="card-version">V4</span>
+          <span class="card-tag new">New Style</span>
+        </div>
+        <div class="card-title">Editorial Magazine</div>
+        <div class="card-desc">Playfair Display serif headlines, Source Sans body, warm cream background, full-bleed hero gradient, pull quote divider. Bon Appetit meets gaming.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v5.html">
+        <div class="card-head">
+          <span class="card-version">V5</span>
+          <span class="card-tag new">New Style</span>
+        </div>
+        <div class="card-title">Brutalist Anti-Design</div>
+        <div class="card-desc">Black and white only. 6px borders, Anton condensed font, chaotic 3-column grid with misaligned cards, manifesto text. Full card color inversion on hover.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v6.html">
+        <div class="card-head">
+          <span class="card-version">V6</span>
+          <span class="card-tag new">New Style</span>
+        </div>
+        <div class="card-title">Y2K Geocities</div>
+        <div class="card-desc">Rainbow gradients, chrome text, blinking everything, sparkle cursors, visitor counter, guestbook, webring. Maximum early-internet chaos energy.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v7.html">
+        <div class="card-head">
+          <span class="card-version">V7</span>
+          <span class="card-tag new">New Style</span>
+        </div>
+        <div class="card-title">Console Dashboard</div>
+        <div class="card-desc">PS5-inspired dark UI. Inter font, horizontal scroll rail with snap, hero spotlight card, detail list rows. Sleek, modern, system-level feel.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v8.html">
+        <div class="card-head">
+          <span class="card-version">V8</span>
+          <span class="card-tag new">New Style</span>
+        </div>
+        <div class="card-title">Hand-Drawn Zine</div>
+        <div class="card-desc">Caveat handwriting font, photocopy grain texture, tilted cards, tape strips, marker highlights, sticky notes, doodle borders. Photocopied with love.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v9.html">
+        <div class="card-head">
+          <span class="card-version">V9</span>
+          <span class="card-tag new">New Style</span>
+        </div>
+        <div class="card-title">Hacker Terminal</div>
+        <div class="card-desc">Fira Code monospace, green-on-black, fake CLI boot sequence, ASCII art title, SQL query output, progress bars, blinking cursor. CRT vignette effect.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v10.html">
+        <div class="card-head">
+          <span class="card-version">V10</span>
+          <span class="card-tag new">New Style</span>
+        </div>
+        <div class="card-title">Luxury Gold</div>
+        <div class="card-desc">Cormorant Garamond serif, deep charcoal background, gold champagne accents, thin dividers, diamond ornaments. Luxury watch brand aesthetic.</div>
+        <span class="card-arrow">View</span>
+      </a>
+    </div>
+
+    <!-- Phase 2: Fusion -->
+    <div class="phase-header">
+      <span class="phase-number">Phase 2</span>
+      <span class="phase-title">Fusion</span>
+      <span class="phase-desc">Combining the strongest ideas from Phase 1</span>
+    </div>
+
+    <div class="grid">
+      <a class="card" href="v11.html">
+        <div class="card-head">
+          <span class="card-version">V11</span>
+          <span class="card-tag mashup">V2 + V3</span>
+        </div>
+        <div class="card-title">Cyberpunk Pixel Fusion</div>
+        <div class="card-desc">V2's neon cyberpunk palette with V3's pixel font. Press Start 2P headings, Share Tech Mono body. The core aesthetic identity is born.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v12.html">
+        <div class="card-head">
+          <span class="card-version">V12</span>
+          <span class="card-tag mashup">V2 + Pixel Art</span>
+        </div>
+        <div class="card-title">Pixel-Art Borders</div>
+        <div class="card-desc">V2's cyberpunk layout with chunky 4px stepped borders using layered box-shadows. L-shaped corner brackets pulse on each card. Pixel meets neon.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v13.html">
+        <div class="card-head">
+          <span class="card-version">V13</span>
+          <span class="card-tag mashup">8-Bit + Neon</span>
+        </div>
+        <div class="card-title">8-Bit Neon Grid</div>
+        <div class="card-desc">Pixel font for everything, 8 bold accent colors cycling per card, 2-column chunky grid, rainbow color bars, hearts/lives bar, neon glow on titles.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v14.html">
+        <div class="card-head">
+          <span class="card-version">V14</span>
+          <span class="card-tag mashup">V2 + Data Viz</span>
+        </div>
+        <div class="card-title">Pixel Progress Bars</div>
+        <div class="card-desc">Cyberpunk dark theme with all ratings replaced by block-character progress bars. S/A/B tier color coding in green, cyan, and amber.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v15.html">
+        <div class="card-head">
+          <span class="card-version">V15</span>
+          <span class="card-tag mashup">V11 Recolor</span>
+        </div>
+        <div class="card-title">Synthwave Pink</div>
+        <div class="card-desc">V11's layout recolored from green/purple to hot pink/deep purple. Subtle purple gradient wash on the background. Vaporwave meets retro.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v16.html">
+        <div class="card-head">
+          <span class="card-version">V16</span>
+          <span class="card-tag mashup">V13 + Carousel</span>
+        </div>
+        <div class="card-title">Pixel Carousel</div>
+        <div class="card-desc">V13's 8-bit neon style converted to horizontal scrolling cards with scroll-snap, arrow navigation buttons, and a live card counter.</div>
+        <span class="card-arrow">View</span>
+      </a>
+    </div>
+
+    <!-- Phase 3: Animation -->
+    <div class="phase-header">
+      <span class="phase-number">Phase 3</span>
+      <span class="phase-title">Animation &amp; Interaction</span>
+      <span class="phase-desc">Bringing the fused designs to life</span>
+    </div>
+
+    <div class="grid">
+      <a class="card" href="v17.html">
+        <div class="card-head">
+          <span class="card-version">V17</span>
+          <span class="card-tag mashup">V12 + Motion</span>
+        </div>
+        <div class="card-title">Animated Pixelgrid</div>
+        <div class="card-desc">V12 base with 6 animation layers: blinking cursor, neon voltage flicker, pixel button-press, floating featured card, pulsing corners, shimmering lines.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card milestone" href="v18.html">
+        <div class="card-head">
+          <span class="card-version">V18</span>
+          <span class="card-tag final">Refined</span>
+        </div>
+        <div class="card-title">Typography Refinement</div>
+        <div class="card-desc">Best of v11-v17 unified with polished typography hierarchy: larger titles, clear section headings, 2-column rank+content layout, generous whitespace.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card milestone" href="v19.html">
+        <div class="card-head">
+          <span class="card-version">V19</span>
+          <span class="card-tag final">Pre-Final</span>
+        </div>
+        <div class="card-title">Synthgrid &mdash; Pre-Final</div>
+        <div class="card-desc">The unified vision: v15's pink/purple palette, v17's animations, v18's spacing. Navigation, featured card, summary table. Feels complete and shippable.</div>
+        <span class="card-arrow">View</span>
+      </a>
+    </div>
+
+    <!-- Phase 4: Images & Interaction -->
+    <div class="phase-header">
+      <span class="phase-number">Phase 4</span>
+      <span class="phase-title">Cover Art &amp; Reveal</span>
+      <span class="phase-desc">Adding real game images and interactive reveals</span>
+    </div>
+
+    <div class="grid">
+      <a class="card" href="v20.html">
+        <div class="card-head">
+          <span class="card-version">V20</span>
+          <span class="card-tag new">Images</span>
+        </div>
+        <div class="card-title">Cover Art Edition</div>
+        <div class="card-desc">V17 base with Steam header images on every card. Featured card gets full-width hero banner; regular cards use side-by-side image+content grid layout.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v21.html">
+        <div class="card-head">
+          <span class="card-version">V21</span>
+          <span class="card-tag new">Interaction</span>
+        </div>
+        <div class="card-title">Hover Reveal</div>
+        <div class="card-desc">Cards start compact (title + score only). On hover, cover image and description expand smoothly via CSS max-height transition. Pure CSS, no JavaScript.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v22.html">
+        <div class="card-head">
+          <span class="card-version">V22</span>
+          <span class="card-tag mashup">V21 Softened</span>
+        </div>
+        <div class="card-title">Muted Palette</div>
+        <div class="card-desc">V21 with softened colors: neon green becomes muted teal, purple becomes lavender. Lower glow radii, gentler flicker. A more refined take.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v23.html">
+        <div class="card-head">
+          <span class="card-version">V23</span>
+          <span class="card-tag mashup">V22 + V17 Colors</span>
+        </div>
+        <div class="card-title">Neon Restored</div>
+        <div class="card-desc">Reverts to original v17 neon green/purple palette while keeping v21's hover reveals. Card expand transitions slowed to 0.6s for a deliberate feel.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card" href="v24.html">
+        <div class="card-head">
+          <span class="card-version">V24</span>
+          <span class="card-tag new">Enhancement</span>
+        </div>
+        <div class="card-title">Background Peek + Big Ranks</div>
+        <div class="card-desc">Each card shows a faint ghost of the cover image (opacity 0.12) before hover. Ranking numbers become 3.2rem editorial-style numbers on the left.</div>
+        <span class="card-arrow">View</span>
+      </a>
+
+      <a class="card milestone" href="v25.html">
+        <div class="card-head">
+          <span class="card-version">V25</span>
+          <span class="card-tag final">Final</span>
+        </div>
+        <div class="card-title">Final &mdash; Top PC Games</div>
+        <div class="card-desc">The complete version. 9 games with Creator's Pick (Apex Legends), YouTube trailer links, wider cards, larger fonts, higher contrast. The culmination of 25 iterations.</div>
+        <span class="card-arrow">View</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p><span class="brand">PC Game Recommendation Guide</span> &mdash; 25 design iterations &mdash; Pure HTML &amp; CSS &mdash; 2026</p>
+  </footer>
+
+</body>
+</html>

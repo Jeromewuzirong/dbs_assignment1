@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PIXEL NEXUS // Carousel Edition</title>
+  <link rel="stylesheet" href="styles/v16.css">
+</head>
+<body>
+
+  <!-- Top color bar -->
+  <div class="pixel-bar">
+    <span class="b1"></span>
+    <span class="b2"></span>
+    <span class="b3"></span>
+    <span class="b4"></span>
+    <span class="b5"></span>
+    <span class="b6"></span>
+    <span class="b7"></span>
+    <span class="b8"></span>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <h1>Pixel Nexus</h1>
+    <span class="tagline">// Top PC Games Database //</span>
+    <div class="pixel-ornament">
+      <span class="px"></span>
+      <span class="px"></span>
+      <span class="px lit"></span>
+      <span class="px"></span>
+      <span class="px lg"></span>
+      <span class="px"></span>
+      <span class="px lit"></span>
+      <span class="px"></span>
+      <span class="px"></span>
+    </div>
+  </header>
+
+  <!-- Info strip -->
+  <div class="info-strip">
+    <span><span class="il">Games:</span> <span class="iv">08</span></span>
+    <span><span class="il">Hi-Score:</span> <span class="iv">9.8</span></span>
+    <span><span class="il">Player:</span> <span class="iv">01</span></span>
+    <span><span class="il">Credits:</span> <span class="iv">99</span></span>
+  </div>
+
+  <!-- Pixel bar -->
+  <div class="pixel-bar">
+    <span class="b8"></span>
+    <span class="b7"></span>
+    <span class="b6"></span>
+    <span class="b5"></span>
+    <span class="b4"></span>
+    <span class="b3"></span>
+    <span class="b2"></span>
+    <span class="b1"></span>
+  </div>
+
+  <!-- Carousel section -->
+  <div class="carousel-section">
+    <div class="carousel-header">
+      <div class="carousel-label">&#9654; Top Rated</div>
+      <div class="carousel-nav">
+        <button class="nav-arrow arrow-left" onclick="document.getElementById('game-carousel').scrollBy({left: -284, behavior: 'smooth'})" aria-label="Scroll left">&#9664;&#9664;</button>
+        <span class="nav-counter"><span id="card-index">01</span> / 08</span>
+        <button class="nav-arrow arrow-right" onclick="document.getElementById('game-carousel').scrollBy({left: 284, behavior: 'smooth'})" aria-label="Scroll right">&#9654;&#9654;</button>
+      </div>
+    </div>
+
+    <div class="carousel" id="game-carousel">
+
+      <article class="game-card">
+        <span class="rank-block">#01</span>
+        <div class="game-title">Elden Ring</div>
+        <div class="game-meta">
+          <span class="game-genre">Action RPG</span>
+          <span class="game-score">9.8/10</span>
+        </div>
+        <p class="game-desc">A vast open world crafted by FromSoftware and George R.R. Martin that redefines exploration. Every ruin, cavern, and boss fight rewards curiosity with brutal, unforgettable encounters.</p>
+        <a class="game-link" href="https://en.bandainamcoent.eu/elden-ring/elden-ring" target="_blank" rel="noopener">Play &gt;&gt;</a>
+      </article>
+
+      <article class="game-card">
+        <span class="rank-block">#02</span>
+        <div class="game-title">Baldur's Gate 3</div>
+        <div class="game-meta">
+          <span class="game-genre">RPG</span>
+          <span class="game-score">9.7/10</span>
+        </div>
+        <p class="game-desc">Larian Studios delivered the definitive CRPG with unmatched player freedom and reactive storytelling. Every choice branches into consequences that reshape the entire narrative.</p>
+        <a class="game-link" href="https://baldursgate3.game" target="_blank" rel="noopener">Play &gt;&gt;</a>
+      </article>
+
+      <article class="game-card">
+        <span class="rank-block">#03</span>
+        <div class="game-title">Hades</div>
+        <div class="game-meta">
+          <span class="game-genre">Roguelike</span>
+          <span class="game-score">9.6/10</span>
+        </div>
+        <p class="game-desc">Supergiant fused razor-sharp combat with a story that deepens with every death. The dialogue never repeats and the gameplay loop is near-perfect in its pacing.</p>
+        <a class="game-link" href="https://www.supergiantgames.com/games/hades" target="_blank" rel="noopener">Play &gt;&gt;</a>
+      </article>
+
+      <article class="game-card">
+        <span class="rank-block">#04</span>
+        <div class="game-title">Hollow Knight</div>
+        <div class="game-meta">
+          <span class="game-genre">Indie</span>
+          <span class="game-score">9.5/10</span>
+        </div>
+        <p class="game-desc">A haunting, hand-drawn metroidvania with impossibly deep world design. Team Cherry packed hundreds of hours of content into a game that costs less than a meal.</p>
+        <a class="game-link" href="https://www.hollowknight.com" target="_blank" rel="noopener">Play &gt;&gt;</a>
+      </article>
+
+      <article class="game-card">
+        <span class="rank-block">#05</span>
+        <div class="game-title">The Witcher 3</div>
+        <div class="game-meta">
+          <span class="game-genre">RPG</span>
+          <span class="game-score">9.4/10</span>
+        </div>
+        <p class="game-desc">CD Projekt Red set the gold standard for open-world storytelling. Side quests here rival the main campaigns of other games in depth and emotional weight.</p>
+        <a class="game-link" href="https://www.thewitcher.com/en/witcher3" target="_blank" rel="noopener">Play &gt;&gt;</a>
+      </article>
+
+      <article class="game-card">
+        <span class="rank-block">#06</span>
+        <div class="game-title">Stardew Valley</div>
+        <div class="game-meta">
+          <span class="game-genre">Simulation</span>
+          <span class="game-score">9.3/10</span>
+        </div>
+        <p class="game-desc">One developer built the coziest farming sim ever made, and it keeps getting better for free. An endlessly charming loop of planting, mining, fishing, and befriending an entire town.</p>
+        <a class="game-link" href="https://www.stardewvalley.net" target="_blank" rel="noopener">Play &gt;&gt;</a>
+      </article>
+
+      <article class="game-card">
+        <span class="rank-block">#07</span>
+        <div class="game-title">Civilization VI</div>
+        <div class="game-meta">
+          <span class="game-genre">Strategy</span>
+          <span class="game-score">9.0/10</span>
+        </div>
+        <p class="game-desc">The "one more turn" king that devours entire weekends without warning. Build empires across millennia with a depth of strategy that no other 4X game has matched.</p>
+        <a class="game-link" href="https://civilization.2k.com" target="_blank" rel="noopener">Play &gt;&gt;</a>
+      </article>
+
+      <article class="game-card">
+        <span class="rank-block">#08</span>
+        <div class="game-title">Counter-Strike 2</div>
+        <div class="game-meta">
+          <span class="game-genre">FPS</span>
+          <span class="game-score">8.9/10</span>
+        </div>
+        <p class="game-desc">The competitive FPS that defined a genre, rebuilt on Source 2 with responsive tick rendering. Two decades in and it still has the tightest gunplay on PC.</p>
+        <a class="game-link" href="https://www.counter-strike.net" target="_blank" rel="noopener">Play &gt;&gt;</a>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- Hearts bar -->
+  <div class="lives-bar">
+    <span class="heart">&#9829;</span>
+    <span class="heart">&#9829;</span>
+    <span class="heart">&#9829;</span>
+    <span class="heart">&#9829;</span>
+    <span class="heart">&#9829;</span>
+    <span class="heart-empty">&#9829;</span>
+    <span class="heart-empty">&#9829;</span>
+    <span class="heart-empty">&#9829;</span>
+  </div>
+
+  <!-- Pixel bar -->
+  <div class="pixel-bar">
+    <span class="b1"></span>
+    <span class="b2"></span>
+    <span class="b3"></span>
+    <span class="b4"></span>
+    <span class="b5"></span>
+    <span class="b6"></span>
+    <span class="b7"></span>
+    <span class="b8"></span>
+  </div>
+
+  <!-- Score readout -->
+  <div class="score-readout">
+    <div class="readout-grid">
+      <div class="readout-cell">
+        <div class="rc-label">Total Games</div>
+        <div class="rc-value">08</div>
+      </div>
+      <div class="readout-cell">
+        <div class="rc-label">Avg Score</div>
+        <div class="rc-value">9.40</div>
+      </div>
+      <div class="readout-cell">
+        <div class="rc-label">Hi Score</div>
+        <div class="rc-value">9.8</div>
+      </div>
+      <div class="readout-cell">
+        <div class="rc-label">Lo Score</div>
+        <div class="rc-value">8.9</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+<pre class="footer-art">
+  +-+-+-+-+-+-+-+-+-+-+-+-+
+  |P|I|X|E|L| |N|E|X|U|S|
+  +-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+    <p><span class="glow-text">Pixel Nexus</span> &mdash; Carousel Edition &mdash; 2026</p>
+  </footer>
+
+  <!-- Carousel scroll tracker -->
+  <script>
+    (function() {
+      var carousel = document.getElementById('game-carousel');
+      var counter = document.getElementById('card-index');
+      carousel.addEventListener('scroll', function() {
+        var cardWidth = 284;
+        var index = Math.round(carousel.scrollLeft / cardWidth) + 1;
+        if (index < 1) index = 1;
+        if (index > 8) index = 8;
+        counter.textContent = index < 10 ? '0' + index : index;
+      });
+    })();
+  </script>
+
+  <!-- Bottom color bar -->
+  <div class="pixel-bar">
+    <span class="b8"></span>
+    <span class="b7"></span>
+    <span class="b6"></span>
+    <span class="b5"></span>
+    <span class="b4"></span>
+    <span class="b3"></span>
+    <span class="b2"></span>
+    <span class="b1"></span>
+  </div>
+
+</body>
+</html>
